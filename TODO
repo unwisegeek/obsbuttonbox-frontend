@@ -1,3 +1,5 @@
 [X] - Set up a config file that does not go to git with my password
 [X] - Fix soundboard page
 [ ] - Fix tabs to take up full space
+[ ] - Dynamically generate buttons based on sounds-available output
+[ ] - Dynamically generate buttons based on GetScenesList(?) endpoint from OBS WS
