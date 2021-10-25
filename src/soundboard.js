@@ -11,7 +11,16 @@ const config = require('./config.js');
 var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
-let sounds_available = fetch(`${api}/api/sounds-available`)
+let sounds_available = fetch(`${api}/api/sounds-available`, 
+    {
+        method: "POST", 
+        body: JSON.stringify(data),
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+)
 console.log(sounds_available)
 
 function createButtonData(label, link) {
