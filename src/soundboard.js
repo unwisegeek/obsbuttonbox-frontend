@@ -12,7 +12,7 @@ var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
 let sounds_available = fetch(`${api}/api/sounds-available`)
-print(sounds_available)
+console.log(sounds_available)
 
 function createButtonData(label, link) {
   return { label, link };
