@@ -16,7 +16,7 @@ function createButtonData(label, link) {
 }
 
 const rows = [
-    createButtonData('horn', '/api/sound?name=horn')
+    createButtonData('horn-0', '/api/sound?name=horn-0')
 ]
 
 const Item = styled(Paper)(({ theme }) => ({
