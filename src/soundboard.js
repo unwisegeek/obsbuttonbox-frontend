@@ -11,8 +11,15 @@ const config = require('./config.js');
 var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
-let sounds_available = fetch(`${api}/api/sounds-available`)
-console.log(sounds_available)
+async function getAPI(url) {
+    const response = await fetch(url);
+    var data = await response.json();
+    return data;
+}
+
+// var sounds_available = fetch(`${api}/api/sounds-available`)
+const data = getAPI(`${api}/api/sounds-available`)
+console.log(data)
 
 function createButtonData(label, link) {
   return { label, link };
