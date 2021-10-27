@@ -3,3 +3,4 @@
 [ ] - Fix tabs to take up full space
 [ ] - Dynamically generate buttons based on sounds-available output
 [ ] - Dynamically generate buttons based on GetScenesList(?) endpoint from OBS WS
+[ ] - Load rimshot sound on the soundboard

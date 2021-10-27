@@ -17,26 +17,34 @@ async function getAPI(url) {
     return data;
 }
 
-// var sounds_available = fetch(`${api}/api/sounds-available`)
-const data = getAPI(`${api}/api/sounds-available`)
-console.log(data)
+var rows = []
 
-function createButtonData(label, link) {
-  return { label, link };
-}
+getAPI(`${api}/api/sounds-available`).then((data) => {
+    console.log(data);
+    function createButtonData(label, link) {
+        return { label, link };
+      }
+      
+      // var sounds_available = data.split(',')
+      // console.log(sounds_available)
+      
+      const sounds_available = data.split(',')
+      console.log(sounds_available)
 
-const rows = [
-    createButtonData('horn-0', '/api/sound?name=horn-0')
-]
+      for (var i = 0; i < sounds_available.length; i++) {
+          rows.push(createButtonData(sounds_available[i], `/api/sound?name=${sounds_available[i]}`))
+      }
+
+});
 
 const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  textColor: '#FFFFFF',
-  backgroundColor: '#0720F0',
-}));
-
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    textColor: '#FFFFFF',
+    backgroundColor: '#0720F0',
+  }));
+  
 export default function SoundsInterface() {
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -53,6 +61,7 @@ export default function SoundsInterface() {
                             <Link
                             variant='body2'
                             underline='none'
+                            color='#CCCCCC'
                             href={api+row.link+"&ref="+referrer}
                             >
                                 {row.label}

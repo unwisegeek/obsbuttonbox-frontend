@@ -46,6 +46,7 @@ export default function ScenesInterface() {
                             <Link
                             variant='body2'
                             underline='none'
+                            color="#CCCCCC"
                             href={api+row.link+"&ref="+referrer}
                             >
                                 {row.label}
