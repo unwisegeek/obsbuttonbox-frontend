@@ -56,14 +56,14 @@ function TabPanel(props) {
     };
   
     return (
-      <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
+      <Box sx={{ bgcolor: 'background.paper', width: '100%' }}>
         <AppBar position="static">
           <Tabs
             value={value}
             onChange={handleChange}
             indicatorColor="secondary"
             textColor="inherit"
-            // variant="fullWidth"
+            variant="fullWidth"
             aria-label="full width tabs example"
             centered
           >
