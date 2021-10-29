@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 
 const config = require('./config.js');
@@ -30,6 +31,12 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#0720F0',
 }));
 
+async function getAPI(url) {
+    const response = await fetch(url);
+    var data = await response;
+    return data;
+}
+
 export default function ScenesInterface() {
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -42,7 +49,16 @@ export default function ScenesInterface() {
                     lg={6}
                     xl={6}
                     >
-                        <Item>
+                        <Button 
+                            variant="contained"
+                            onClick={() => {
+                                getAPI(`${row.link}`)
+                            }}
+                        >
+                            {row.label}
+                        </Button>
+
+                        {/* <Item>
                             <Link
                             variant='body2'
                             underline='none'
@@ -51,7 +67,7 @@ export default function ScenesInterface() {
                             >
                                 {row.label}
                             </Link>
-                        </Item>
+                        </Item> */}
             </Grid>
             ))}
             </Grid>
