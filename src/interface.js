@@ -10,6 +10,22 @@ import { Typography } from '@mui/material';
 import ScenesInterface from './scenes.js'
 import SoundsInterface from './soundboard.js';
 
+var $_GET = {};
+if(document.location.toString().indexOf('?') !== -1) {
+    var query = document.location
+                   .toString()
+                   // get the query string
+                   .replace(/^.*?\?/, '')
+                   // and remove any existing hash string (thanks, @vrijdenker)
+                   .replace(/#.*$/, '')
+                   .split('&');
+
+    for(var i=0, l=query.length; i<l; i++) {
+       var aux = decodeURIComponent(query[i]).split('=');
+       $_GET[aux[0]] = aux[1];
+    }
+}
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -37,8 +53,8 @@ function TabPanel(props) {
   };
   
   export default function AdmiralAppBar() {
+    const [value, setValue] = React.useState($_GET['idx'] === undefined ? 0 : parseInt($_GET['idx']));
     const theme = useTheme();
-    const [value, setValue] = React.useState(0);
 
     function a11yProps(index) {
         return {
