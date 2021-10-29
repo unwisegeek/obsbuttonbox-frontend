@@ -51,11 +51,11 @@ export default function SoundsInterface() {
             <Grid container spacing={2}>
                 {rows.map((row) => (
                     <Grid item 
-                    xs='auto'
-                    sm='auto'
-                    md='auto'
-                    lg='auto'
-                    xl='auto'
+                    xs={6}
+                    sm={6}
+                    md={6}
+                    lg={6}
+                    xl={6}
                     >
                         <Item>
                             <Link
