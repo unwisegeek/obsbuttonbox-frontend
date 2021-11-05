@@ -9,6 +9,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { Typography } from '@mui/material';
 import ScenesInterface from './scenes.js'
 import SoundsInterface from './soundboard.js';
+import Automation from './automation.js'
 
 var $_GET = {};
 if(document.location.toString().indexOf('?') !== -1) {
@@ -85,7 +86,7 @@ function TabPanel(props) {
           >
             <Tab label="Scenes" {...a11yProps(0)} />
             <Tab label="Soundboard" {...a11yProps(1)} />
-            <Tab label="Future Item" {...a11yProps(2)} disabled />
+            <Tab label="Automation" {...a11yProps(2)} />
             <Tab label="Future Item" {...a11yProps(3)} disabled />
           </Tabs>
         </AppBar>
@@ -101,7 +102,7 @@ function TabPanel(props) {
             <SoundsInterface />
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            Future Item
+            <Automation />
           </TabPanel>
           <TabPanel value={value} index={3} dir={theme.direction}>
             Future Item
