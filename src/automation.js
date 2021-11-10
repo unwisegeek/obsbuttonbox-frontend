@@ -12,16 +12,30 @@ var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
 
-function createButtonData(label, link) {
-    return { label, link };
+async function getAPI(url) {
+    const response = await fetch(url);
+    var data = await response.json();
+    return data;
 }
 
-const rows = [
-    createButtonData("2m", `/api/countdown?time=120`),
-    createButtonData("5m", `/api/countdown?time=300`),
-    createButtonData("7m", `/api/countdown?time=420`),
-    createButtonData("10m", `/api/countdown?time=600`),
-]
+var rows = []
+var entry = []
+
+getAPI(`${api}/api/automation/triggers`).then((data) => {
+    console.log(data);
+    function createButtonData(label, link) {
+        return { label, link };
+      }
+      
+      const triggers_available = data.split(',')
+      console.log(triggers_available)
+
+      for (var i = 0; i < triggers_available.length; i++) {
+          entry = triggers_available[i].split(":")
+          rows.push(createButtonData(entry[0], `/api/automation?trigger=${entry[1]}`))
+      }
+
+});
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
