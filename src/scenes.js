@@ -6,10 +6,9 @@ import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 
 const config = require('./config.js');
-
+var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
 var referrer = window.location.href;
-var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
 function createButtonData(label, link) {
   return { label, link };

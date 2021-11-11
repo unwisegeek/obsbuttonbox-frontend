@@ -10,6 +10,7 @@ import { Typography } from '@mui/material';
 import ScenesInterface from './scenes.js'
 import SoundsInterface from './soundboard.js';
 import Automation from './automation.js'
+import {info} from './storage.js'
 
 var $_GET = {};
 if(document.location.toString().indexOf('?') !== -1) {
@@ -54,7 +55,7 @@ function TabPanel(props) {
   };
   
   export default function AdmiralAppBar() {
-    const [value, setValue] = React.useState($_GET['idx'] === undefined ? 0 : parseInt($_GET['idx']));
+    const [value, setValue] = React.useState(info.getItem('index') === undefined ? 0 : parseInt(info.getItem('index')));
     const theme = useTheme();
 
     function a11yProps(index) {
@@ -65,10 +66,12 @@ function TabPanel(props) {
       }
   
     const handleChange = (event, newValue) => {
+      info.setItem('index', newValue)
       setValue(newValue);
     };
   
     const handleChangeIndex = (index) => {
+      info.setItem('index', index)
       setValue(index);
     };
   

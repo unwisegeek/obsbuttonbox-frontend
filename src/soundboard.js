@@ -4,38 +4,31 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
+import {info, getAPI} from './storage.js'
 
 const config = require('./config.js');
-
-
 var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
-async function getAPI(url) {
-    const response = await fetch(url);
-    var data = await response.json();
-    return data;
-}
-
 var rows = []
 
-getAPI(`${api}/api/sounds-available`).then((data) => {
-    console.log(data);
-    function createButtonData(label, link) {
-        return { label, link };
-      }
-      
-      // var sounds_available = data.split(',')
-      // console.log(sounds_available)
-      
-      const sounds_available = data.split(',')
-      console.log(sounds_available)
+function createButtonData(label, link) {
+    return { label, link };
+  }
 
-      for (var i = 0; i < sounds_available.length; i++) {
-          rows.push(createButtonData(sounds_available[i], `/api/sound?name=${sounds_available[i]}`))
-      }
+let sounds_data = info.getItem('sounds_available')
 
-});
+if (sounds_data === null) {
+    getAPI(`${api}/api/sounds-available`).then((data) => {      
+        info.setItem('sounds_available', data);
+    });
+    let sounds_data = info.getItem('sounds_available')
+}
+
+let sounds_available = sounds_data.split(',')
+for (var i = 0; i < sounds_available.length; i++) {
+    rows.push(createButtonData(sounds_available[i], `/api/sound?name=${sounds_available[i]}`))
+}
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
