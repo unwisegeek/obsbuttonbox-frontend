@@ -4,5 +4,5 @@
 [X] - Dynamically generate buttons based on sounds-available output
 [ ] - Dynamically generate buttons based on GetScenesList(?) endpoint from OBS WS
 [X] - Electron (basically)
-[ ] - Change buttons to <Buttons> that use an async call to the API instead of a Link
-[ ] - Cache results of sounds-available API call so that when navigating by useState and idx prop, those sounds are used.
+[X] - Cache results of sounds-available API call so that when navigating by useState and idx prop, those sounds are used.
+[X] - Cache results of /automations/available API call so that when navigating by useState and idx prop, those sounds are used.
