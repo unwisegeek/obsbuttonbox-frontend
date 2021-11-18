@@ -10,7 +10,11 @@ import { Typography } from '@mui/material';
 import ScenesInterface from './scenes.js'
 import SoundsInterface from './soundboard.js';
 import Automation from './automation.js'
-import {info} from './storage.js'
+import {getAPI, info} from './storage.js'
+import Brightness1Icon from '@mui/icons-material/Brightness1';
+
+const config = require('./config.js');
+var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
 var $_GET = {};
 if(document.location.toString().indexOf('?') !== -1) {
@@ -55,6 +59,12 @@ function TabPanel(props) {
   };
   
   export default function AdmiralAppBar() {
+    let statusColor = "red"
+    getAPI(`${api}/api/healthcheck`).then((re) => {
+      console.log(`re = ${re}`)
+      statusColor = (re === true) ? "#32CD32" : "red"
+      console.log(`statusColor = ${statusColor}`)
+      });
     const [value, setValue] = React.useState(info.getItem('index') === undefined ? 0 : parseInt(info.getItem('index')));
     const theme = useTheme();
 
@@ -87,6 +97,7 @@ function TabPanel(props) {
             aria-label="full width tabs example"
             centered
           >
+            <Brightness1Icon sx={{ color: "blue", padding: 2 }} />
             <Tab label="Scenes" {...a11yProps(0)} />
             <Tab label="Soundboard" {...a11yProps(1)} />
             <Tab label="Automation" {...a11yProps(2)} />
