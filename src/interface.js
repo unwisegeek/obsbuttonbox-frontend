@@ -16,6 +16,7 @@ import Brightness1Icon from '@mui/icons-material/Brightness1';
 const config = require('./config.js');
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
+info.removeItem('apiStatusColor')
 var $_GET = {};
 if(document.location.toString().indexOf('?') !== -1) {
     var query = document.location
@@ -58,13 +59,17 @@ function TabPanel(props) {
     value: PropTypes.number.isRequired,
   };
   
-  export default function AdmiralAppBar() {
-    let statusColor = "red"
+  function ApiStatusLight() {
     getAPI(`${api}/api/healthcheck`).then((re) => {
-      console.log(`re = ${re}`)
-      statusColor = (re === true) ? "#32CD32" : "red"
-      console.log(`statusColor = ${statusColor}`)
-      });
+      console.log(`${re}`)
+      info.setItem('apiStatusColor', re === true ? "#32DC32" : "red")
+    })
+  }
+
+  export default function AdmiralAppBar() {
+    ApiStatusLight()
+    let statusColor = info.getItem('apiStatusColor') !== null ? info.getItem('apiStatusColor') : "red"
+    console.log(`${statusColor}`)
     const [value, setValue] = React.useState(info.getItem('index') === undefined ? 0 : parseInt(info.getItem('index')));
     const theme = useTheme();
 
@@ -97,12 +102,16 @@ function TabPanel(props) {
             aria-label="full width tabs example"
             centered
           >
-            <Brightness1Icon sx={{ color: "blue", padding: 2 }} />
             <Tab label="Scenes" {...a11yProps(0)} />
             <Tab label="Soundboard" {...a11yProps(1)} />
             <Tab label="Automation" {...a11yProps(2)} />
             <Tab label="Future Item" {...a11yProps(3)} disabled />
+            <Brightness1Icon sx={{
+              color: `${statusColor}`,
+              padding: 2,
+            }} />
           </Tabs>
+          
         </AppBar>
         <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
