@@ -25,7 +25,7 @@ if (sounds_data === null) {
     let sounds_data = info.getItem('sounds_available')
 }
 
-let sounds_available = sounds_data.split(',')
+let sounds_available = sounds_data != null ? sounds_data.split(',') : ""
 for (var i = 0; i < sounds_available.length; i++) {
     rows.push(createButtonData(sounds_available[i], `/api/sound?name=${sounds_available[i]}`))
 }

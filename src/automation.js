@@ -26,7 +26,7 @@ function createButtonData(label, link) {
     return { label, link };
   }
 
-let trigger_data = info.getItem('triggers_available') 
+let trigger_data = info.getItem('triggers_available') !== null ? info.getItem('triggers_available') : null
 
 if (trigger_data === null) {
 getAPI(`${api}/api/automation/triggers`)
