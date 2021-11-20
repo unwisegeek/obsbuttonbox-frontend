@@ -6,3 +6,4 @@
 [X] - Electron (basically)
 [X] - Cache results of sounds-available API call so that when navigating by useState and idx prop, those sounds are used.
 [X] - Cache results of /automations/available API call so that when navigating by useState and idx prop, those sounds are used.
+[ ] - Disable buttons when API healthcheck fails
