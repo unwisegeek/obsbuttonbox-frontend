@@ -10,6 +10,7 @@ import { Typography } from '@mui/material';
 import ScenesInterface from './scenes.js'
 import SoundsInterface from './soundboard.js';
 import Automation from './automation.js'
+import VolumeInterface from './volume.js'
 import {getAPI, info} from './storage.js'
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 
@@ -105,7 +106,7 @@ function TabPanel(props) {
             <Tab label="Scenes" {...a11yProps(0)} />
             <Tab label="Soundboard" {...a11yProps(1)} />
             <Tab label="Automation" {...a11yProps(2)} />
-            <Tab label="Future Item" {...a11yProps(3)} disabled />
+            <Tab label="Volume" {...a11yProps(3)} />
             <Brightness1Icon sx={{
               color: `${statusColor}`,
               padding: 2,
@@ -128,7 +129,7 @@ function TabPanel(props) {
             <Automation />
           </TabPanel>
           <TabPanel value={value} index={3} dir={theme.direction}>
-            Future Item
+            <VolumeInterface />
           </TabPanel>
         </SwipeableViews>
       </Box>
