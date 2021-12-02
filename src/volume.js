@@ -10,6 +10,23 @@ import {info, getAPI} from './storage.js'
 const config = require('./config.js');
 var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
+var rows = []
+
+// function createSliderData(item) {
+    
+//     return { name, status, volume, muted }
+// }
+
+getAPI(`${api}/api/getsoundsources`)
+.then((data) => {
+    for (var i = 0; i < Object.keys(data["sources"]).length; i++ ) {
+        let source_name = data["sources"][i].name
+        let status = data["sources"][i].status
+        let volume = data["sources"][i].volume
+        let muted = data["sources"][i].muted
+        rows.push({ source_name, status, volume, muted })
+    }
+})
 
 function changeVolume(event, value, slider) {
     getAPI(`${api}/api/?call=SetVolume&volume=${value}:float&source=${slider}&useDecibel=True:bool`)
@@ -42,104 +59,50 @@ function valuetext(value) {
 }
 
 export default function VolumeInterface() {
+    let grid_size = 12 / rows.length
     return (
         <Box sx={{height: "70vh" }}>
             <Grid container 
                 spacing={2} 
                 direction="row"
-                justifyContent="center"
-                alignItems="stretch"
-                >
-                <Grid item 
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3}
-                    />
-                <Grid item 
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3}
-                    >
-                        Background Audio
+                justifyContent="space-evenly"
+                alignItems="center"
+                >   
+                    {rows.map((row) => (
+                        <Grid item 
+                        xs={grid_size}
+                        sm={grid_size}
+                        md={grid_size}
+                        lg={grid_size}
+                        xl={grid_size}
+                        >
+                            {row.source_name}
                     </Grid>
-                <Grid item
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3}
-                    >
-                        Microphone
+                    ))}
+                    {rows.map((row) => (
+                        <Grid item 
+                        xs={grid_size}
+                        sm={grid_size}
+                        md={grid_size}
+                        lg={grid_size}
+                        xl={grid_size}
+                        >
+                            <Slider
+                                sx={{height: "50vh" }}
+                                aria-label="Custom marks"
+                                defaultValue={row.volume}
+                                orientation="vertical"
+                                getAriaValueText={valuetext}
+                                min={-40}
+                                max={-10}
+                                step={.1}
+                                valueLabelDisplay="on"
+                                marks={marks}
+                                onChangeCommitted={(event, value) => changeVolume(event, value, row.source_name)}
+                            />
                     </Grid>
-                <Grid item 
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3} 
-                    />
-
-                <Grid item
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3}
-                    />
-                <Grid item 
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3}
-                    >
-                        <Slider
-                            sx={{height: "50vh" }}
-                            aria-label="Custom marks"
-                            defaultValue={-20}
-                            orientation="vertical"
-                            getAriaValueText={valuetext}
-                            min={-40}
-                            max={-10}
-                            step={.1}
-                            valueLabelDisplay="on"
-                            marks={marks}
-                            onChangeCommitted={(event, value) => changeVolume(event, value, "Desktop Audio")}
-                        />
+                    ))}
                 </Grid>
-                <Grid item 
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3}
-                    >
-                        <Slider
-                            sx={{height: "50vh" }}
-                            aria-label="Custom marks"
-                            defaultValue={-20}
-                            orientation="vertical"
-                            getAriaValueText={valuetext}
-                            min={-40}
-                            max={-10}
-                            step={.1}
-                            valueLabelDisplay="on"
-                            marks={marks}
-                            onChangeCommitted={(event, value) => changeVolume(event, value, "Mic/Aux")}
-                        />
-                </Grid>
-                <Grid item
-                    xs={3}
-                    sm={3}
-                    md={3}
-                    lg={3}
-                    xl={3}
-                    />
-            </Grid>
-        </Box>
+            </Box>
     );
 }
