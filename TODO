@@ -7,4 +7,7 @@
 [X] - Cache results of sounds-available API call so that when navigating by useState and idx prop, those sounds are used.
 [X] - Cache results of /automations/available API call so that when navigating by useState and idx prop, those sounds are used.
 [ ] - Disable buttons when API healthcheck fails
-[ ] - Set default state of volume sliders to a value specified by the API
+[X] - Set default state of volume sliders to a value specified by the API
+[X] - Dynamically generated volume sliders
+[ ] - Bug fix - Doesn't load volume slider before rendering page
+[ ] - Possibly pull all API at once and save in session Cache for further use
