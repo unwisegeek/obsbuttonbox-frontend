@@ -11,3 +11,4 @@
 [X] - Dynamically generated volume sliders
 [ ] - Bug fix - Doesn't load volume slider before rendering page
 [ ] - Possibly pull all API at once and save in session Cache for further use
+[ ] - BUG - Fix trigger_data is null

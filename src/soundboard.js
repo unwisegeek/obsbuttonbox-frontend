@@ -16,7 +16,7 @@ function createButtonData(label, link) {
     return { label, link };
   }
 
-let sounds_data = info.getItem('sounds_available')
+let sounds_data = info.getItem('sounds_available') !== null ? info.getItem('sounds_available') : null
 
 if (sounds_data === null) {
     getAPI(`${api}/api/sounds-available`).then((data) => {      
