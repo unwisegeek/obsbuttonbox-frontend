@@ -26,18 +26,13 @@ function createButtonData(label, link) {
     return { label, link };
   }
 
-let trigger_data = info.getItem('triggers_available') !== null ? info.getItem('triggers_available') : null
-
-if (trigger_data === null) {
 getAPI(`${api}/api/automation/triggers`)
     .then((data) => {              
         info.setItem('triggers_available', data)
     });
-    trigger_data = info.getItem('triggers_available');
-}
 
-let triggers_available = trigger_data.split(',')
-
+let trigger_data = info.getItem('triggers_available');
+let triggers_available = trigger_data != null ? trigger_data.split(',') : ""
 for (var i = 0; i < triggers_available.length; i++) {
     entry = triggers_available[i].split(":")
     rows.push(createButtonData(entry[0], `/api/automation?trigger=${entry[1]}`))
