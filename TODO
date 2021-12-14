@@ -9,6 +9,7 @@
 [ ] - Disable buttons when API healthcheck fails
 [X] - Set default state of volume sliders to a value specified by the API
 [X] - Dynamically generated volume sliders
-[ ] - Bug fix - Doesn't load volume slider before rendering page
-[ ] - Possibly pull all API at once and save in session Cache for further use
-[ ] - BUG - Fix trigger_data is null
+[X] - Bug fix - Doesn't load volume slider before rendering page
+[X] - Possibly pull all API at once and save in session Cache for further use
+[X] - BUG - Fix trigger_data is null
+[ ] - BUG - Mic/Aux volume is higher than -10, but volume slider stops at -10
