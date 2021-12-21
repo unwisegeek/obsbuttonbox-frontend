@@ -13,3 +13,4 @@
 [X] - Possibly pull all API at once and save in session Cache for further use
 [X] - BUG - Fix trigger_data is null
 [ ] - BUG - Mic/Aux volume is higher than -10, but volume slider stops at -10
+[ ] - FEATURE - Add lines to set scrollbar MQTT topics
