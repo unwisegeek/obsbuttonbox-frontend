@@ -4,7 +4,11 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
+import TextField from '@mui/material/TextField'
 import { info, getAPI } from './storage.js'
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+
 
 const config = require('./config.js');
 
@@ -22,6 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#0720F0',
   }));
 
+
 function createButtonData(label, link) {
     return { label, link };
   }
@@ -38,8 +43,22 @@ for (var i = 0; i < triggers_available.length; i++) {
     rows.push(createButtonData(entry[0], `/api/automation?trigger=${entry[1]}`))
 }
 
+getAPI(`${api}/api/getscrollbar`)
+    .then((data) => {
+        info.setItem('scrollbar-line1', data["line1"])
+        info.setItem('scrollbar-line2', data["line2"])
+    });
+
+function sendScrollbar() {
+    let msg1 = info.getItem(`scrollbar-line1`)
+    let msg2 = info.getItem(`scrollbar-line2`)
+    getAPI(`${api}/api/setscrollbar?line=1&msg=${msg1}`)
+    getAPI(`${api}/api/setscrollbar?line=2&msg=${msg2}`)
+}
+
 export default function Automation() {
         return (
+        <div>
         <Box sx={{ flexGrow: 1 }}>
         {/* Countdown Automation */}
             <Grid container spacing={2}>
@@ -65,5 +84,72 @@ export default function Automation() {
             ))}
             </Grid>
         </Box>
+        <Box
+        component="form"
+        sx={{ flexGrow: 1, m: 2 }}
+        noValidate
+        autoComplete="off"
+      >
+        <Grid container spacing={2}>
+        <Grid item 
+                xs={10}
+                sm={10}
+                md={10}
+                lg={10}
+                xl={10}
+                >
+          <TextField
+          fullwidth
+          sx={{ width: "100%" }}
+          id="scrollbar-line1"
+          label="Scrollbar Line 1"
+          defaultValue={info.getItem('scrollbar-line1')}
+          onChange={(e) => info.setItem('scrollbar-line1', e.target.value)}
+        /></Grid>
+        <Grid item 
+                xs={2}
+                sm={2}
+                md={2}
+                lg={2}
+                xl={2}
+                >
+            </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+        <Grid item 
+                xs={10}
+                sm={10}
+                md={10}
+                lg={10}
+                xl={10}
+                >
+        <TextField
+          fullwidth
+          sx={{ width: "100%" }}
+          id="scrollbar-line2"
+          label="Scrollbar Line 2"
+          defaultValue={info.getItem('scrollbar-line2')}
+          onChange={(e) => info.setItem('scrollbar-line2', e.target.value)}
+        /></Grid>
+        <Grid item 
+                xs={2}
+                sm={2}
+                md={2}
+                lg={2}
+                xl={2}
+                >
+             <Button 
+                variant="contained" 
+                endIcon={<SendIcon />}
+                onClick={() => {
+                    sendScrollbar(2)
+                }}
+                >
+                    Send
+                </Button>
+        </Grid>
+        </Grid>
+    </Box>
+    </div>
     );
 }
