@@ -2,6 +2,17 @@
 [X] - Fix soundboard page
 [X] - Fix tabs to take up full space
 [X] - Dynamically generate buttons based on sounds-available output
-[ ] - Dynamically generate buttons based on GetScenesList(?) endpoint from OBS WS
 [X] - Electron (basically)
-[ ] - Change buttons to <Buttons> that use an async call to the API instead of a Link
+[X] - Cache results of sounds-available API call so that when navigating by useState and idx prop, those sounds are used.
+[X] - Cache results of /automations/available API call so that when navigating by useState and idx prop, those sounds are used.
+[X] - Set default state of volume sliders to a value specified by the API
+[X] - Dynamically generated volume sliders
+[X] - Bug fix - Doesn't load volume slider before rendering page
+[X] - Possibly pull all API at once and save in session Cache for further use
+[X] - BUG - Fix trigger_data is null
+[X] - BUG - Mic/Aux volume is higher than -10, but volume slider stops at -10
+[X] - FEATURE - Add lines to set scrollbar MQTT topics
+[X] - BUG - Sound and Trigger buttons do not load until after refresh
+
+[ ] - Dynamically generate buttons based on GetScenesList(?) endpoint from OBS WS
+[ ] - Disable buttons when API healthcheck fail

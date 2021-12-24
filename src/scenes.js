@@ -6,13 +6,12 @@ import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 
 const config = require('./config.js');
-
-
-var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
+var referrer = window.location.href;
+
 function createButtonData(label, link) {
-  return { label, link };
+    return { label, link };
 }
 
 const rows = [
@@ -23,11 +22,11 @@ const rows = [
 ]
 
 const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  textColor: '#FFFFFF',
-  backgroundColor: '#0720F0',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    textColor: '#FFFFFF',
+    backgroundColor: '#0720F0',
 }));
 
 export default function ScenesInterface() {
@@ -35,25 +34,25 @@ export default function ScenesInterface() {
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
                 {rows.map((row) => (
-                    <Grid item 
-                    xs={6}
-                    sm={6}
-                    md={6}
-                    lg={6}
-                    xl={6}
+                    <Grid item
+                        xs={6}
+                        sm={6}
+                        md={6}
+                        lg={6}
+                        xl={6}
                     >
                         <Item>
                             <Link
-                            variant='body2'
-                            underline='none'
-                            color="#CCCCCC"
-                            href={api+row.link+"&ref="+referrer}
+                                variant='body2'
+                                underline='none'
+                                color="#CCCCCC"
+                                href={api + row.link + "&ref=" + referrer}
                             >
                                 {row.label}
                             </Link>
                         </Item>
-            </Grid>
-            ))}
+                    </Grid>
+                ))}
             </Grid>
         </Box>
     );

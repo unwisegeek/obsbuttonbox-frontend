@@ -2,6 +2,7 @@
 
 # Project-specific Files
 config.js
+scratchpad
 
 # dependencies
 /node_modules
