@@ -1,31 +1,17 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
 import TextField from '@mui/material/TextField'
-import { info, getAPI } from './storage.js'
+import { info, getAPI, Linkbutton, sendAPIReq } from './storage.js'
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
 
 const config = require('./config.js');
-
-var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
 var rows = []
 var entry = []
-
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    textColor: '#FFFFFF',
-    backgroundColor: '#0720F0',
-}));
-
 
 function createButtonData(label, link) {
     return { label, link };
@@ -65,16 +51,15 @@ export default function Automation() {
                             lg={3}
                             xl={3}
                         >
-                            <Item>
-                                <Link
-                                    variant='body2'
-                                    underline='none'
-                                    color='#CCCCCC'
-                                    href={api + row.link + "&ref=" + referrer}
-                                >
-                                    {row.label}
-                                </Link>
-                            </Item>
+                            <Linkbutton
+                                sx={{ width: "100%" }}
+                                variant="contained"
+                                onClick={() => {
+                                    sendAPIReq(api + row.link)
+                                }}
+                            >
+                                {row.label}
+                            </Linkbutton>                        
                         </Grid>
                     ))}
                 </Grid>

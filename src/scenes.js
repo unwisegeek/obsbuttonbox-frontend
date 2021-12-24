@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
+import { Linkbutton, sendAPIReq } from './storage.js'
 
 const config = require('./config.js');
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
@@ -21,14 +22,6 @@ const rows = [
     createButtonData('Outro', '/api/?call=SetCurrentScene&scene-name=Outro'),
 ]
 
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    textColor: '#FFFFFF',
-    backgroundColor: '#0720F0',
-}));
-
 export default function ScenesInterface() {
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -41,16 +34,15 @@ export default function ScenesInterface() {
                         lg={6}
                         xl={6}
                     >
-                        <Item>
-                            <Link
-                                variant='body2'
-                                underline='none'
-                                color="#CCCCCC"
-                                href={api + row.link + "&ref=" + referrer}
-                            >
-                                {row.label}
-                            </Link>
-                        </Item>
+                        <Linkbutton
+                            sx={{ width: "100%" }}
+                            variant="contained"
+                            onClick={() => {
+                                sendAPIReq(api + row.link)
+                            }}
+                        >
+                            {row.label}
+                        </Linkbutton>
                     </Grid>
                 ))}
             </Grid>
