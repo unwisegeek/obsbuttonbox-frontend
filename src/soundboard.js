@@ -16,10 +16,6 @@ function createButtonData(label, link) {
     return { label, link };
 }
 
-getAPI(`${api}/api/sounds-available`).then((data) => {
-    info.setItem('sounds_available', data);
-});
-
 let sounds_data = info.getItem('sounds_available')
 let sounds_available = sounds_data != null ? sounds_data.split(',') : ""
 for (var i = 0; i < sounds_available.length; i++) {

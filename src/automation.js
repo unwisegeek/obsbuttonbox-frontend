@@ -31,11 +31,6 @@ function createButtonData(label, link) {
     return { label, link };
 }
 
-getAPI(`${api}/api/automation/triggers`)
-    .then((data) => {
-        info.setItem('triggers_available', data)
-    });
-
 let trigger_data = info.getItem('triggers_available');
 let triggers_available = trigger_data != null ? trigger_data.split(',') : ""
 for (var i = 0; i < triggers_available.length; i++) {
