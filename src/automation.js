@@ -24,15 +24,15 @@ const Item = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     textColor: '#FFFFFF',
     backgroundColor: '#0720F0',
-  }));
+}));
 
 
 function createButtonData(label, link) {
     return { label, link };
-  }
+}
 
 getAPI(`${api}/api/automation/triggers`)
-    .then((data) => {              
+    .then((data) => {
         info.setItem('triggers_available', data)
     });
 
@@ -57,113 +57,113 @@ function sendScrollbar() {
 }
 
 export default function Automation() {
-        return (
+    return (
         <div>
-        <Box sx={{ flexGrow: 1 }}>
-        {/* Countdown Automation */}
-            <Grid container spacing={2}>
-            {rows.map((row) => (
-                <Grid item 
-                xs={3}
-                sm={3}
-                md={3}
-                lg={3}
-                xl={3}
-                >
-                    <Item>
-                        <Link
-                        variant='body2'
-                        underline='none'
-                        color='#CCCCCC'
-                        href={api+row.link+"&ref="+referrer}
+            <Box sx={{ flexGrow: 1 }}>
+                {/* Countdown Automation */}
+                <Grid container spacing={2}>
+                    {rows.map((row) => (
+                        <Grid item
+                            xs={3}
+                            sm={3}
+                            md={3}
+                            lg={3}
+                            xl={3}
                         >
-                            {row.label}
-                        </Link>
-                    </Item>
+                            <Item>
+                                <Link
+                                    variant='body2'
+                                    underline='none'
+                                    color='#CCCCCC'
+                                    href={api + row.link + "&ref=" + referrer}
+                                >
+                                    {row.label}
+                                </Link>
+                            </Item>
+                        </Grid>
+                    ))}
                 </Grid>
-            ))}
-            </Grid>
-        </Box>
-        <Box
-        component="form"
-        sx={{ flexGrow: 1, m: 2 }}
-        noValidate
-        autoComplete="off"
-      >
-        
-        <Grid
-  container
-  direction="row"
-  justifyContent="space-evenly"
-  alignItems="flex-end"
->
-        <Grid item 
-                xs={10}
-                sm={10}
-                md={10}
-                lg={10}
-                xl={10}
+            </Box>
+            <Box
+                component="form"
+                sx={{ flexGrow: 1, m: 2 }}
+                noValidate
+                autoComplete="off"
+            >
+
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-evenly"
+                    alignItems="flex-end"
                 >
-          <TextField
-          fullwidth
-          margin="dense"
-          sx={{ width: "100%" }}
-          id="scrollbar-line1"
-          label="Scrollbar Line 1"
-          defaultValue={info.getItem('scrollbar-line1')}
-          onChange={(e) => info.setItem('scrollbar-line1', e.target.value)}
-        /></Grid>
-        <Grid item 
-                xs={2}
-                sm={2}
-                md={2}
-                lg={2}
-                xl={2}
-                />
-            </Grid>
-            <Grid
-  container
-  direction="row"
-  justifyContent="space-evenly"
-  alignItems="flex-end"
->
-        <Grid item 
-                xs={10}
-                sm={10}
-                md={10}
-                lg={10}
-                xl={10}
+                    <Grid item
+                        xs={10}
+                        sm={10}
+                        md={10}
+                        lg={10}
+                        xl={10}
+                    >
+                        <TextField
+                            fullwidth
+                            margin="dense"
+                            sx={{ width: "100%" }}
+                            id="scrollbar-line1"
+                            label="Scrollbar Line 1"
+                            defaultValue={info.getItem('scrollbar-line1')}
+                            onChange={(e) => info.setItem('scrollbar-line1', e.target.value)}
+                        /></Grid>
+                    <Grid item
+                        xs={2}
+                        sm={2}
+                        md={2}
+                        lg={2}
+                        xl={2}
+                    />
+                </Grid>
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-evenly"
+                    alignItems="flex-end"
                 >
-        <TextField
-          fullwidth
-          margin="dense"
-          sx={{ width: "100%" }}
-          id="scrollbar-line2"
-          label="Scrollbar Line 2"
-          defaultValue={info.getItem('scrollbar-line2')}
-          onChange={(e) => info.setItem('scrollbar-line2', e.target.value)}
-        /></Grid>
-        <Grid item 
-                xs={2}
-                sm={2}
-                md={2}
-                lg={2}
-                xl={2}
-                >
-             <Button 
-                variant="contained" 
-                endIcon={<SendIcon />}
-                size="large"
-                onClick={() => {
-                    sendScrollbar(2)
-                }}
-                sx={{ margin: "10px", justifycontent: "right" }}
-                >
-                    Send
-                </Button>
-        </Grid>
-        </Grid>
-    </Box>
-    </div>
+                    <Grid item
+                        xs={10}
+                        sm={10}
+                        md={10}
+                        lg={10}
+                        xl={10}
+                    >
+                        <TextField
+                            fullwidth
+                            margin="dense"
+                            sx={{ width: "100%" }}
+                            id="scrollbar-line2"
+                            label="Scrollbar Line 2"
+                            defaultValue={info.getItem('scrollbar-line2')}
+                            onChange={(e) => info.setItem('scrollbar-line2', e.target.value)}
+                        /></Grid>
+                    <Grid item
+                        xs={2}
+                        sm={2}
+                        md={2}
+                        lg={2}
+                        xl={2}
+                    >
+                        <Button
+                            variant="contained"
+                            endIcon={<SendIcon />}
+                            size="large"
+                            onClick={() => {
+                                sendScrollbar(2)
+                            }}
+                            sx={{ margin: "10px", justifycontent: "right" }}
+                        >
+                            Send
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Box>
+        </div>
     );
 }
