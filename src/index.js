@@ -23,6 +23,6 @@ getSoundsandAutos().then(
   ReactDOM.render(
     <AdmiralAppBar />,
     document.getElementById('root'))
-  )
+)
 
 
