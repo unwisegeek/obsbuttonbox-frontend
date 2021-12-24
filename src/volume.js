@@ -52,6 +52,10 @@ const marks = [
       value: -10,
       label: '-10.0 dB',
     },
+    {
+      value: 0,
+      label: '0.0 dB'
+    },
   ];
   
 function valuetext(value) {
@@ -94,7 +98,7 @@ export default function VolumeInterface() {
                                 orientation="vertical"
                                 getAriaValueText={valuetext}
                                 min={-40}
-                                max={-10}
+                                max={0}
                                 step={.1}
                                 valueLabelDisplay="on"
                                 marks={marks}
