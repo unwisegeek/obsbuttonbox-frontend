@@ -90,7 +90,13 @@ export default function Automation() {
         noValidate
         autoComplete="off"
       >
-        <Grid container spacing={2}>
+        
+        <Grid
+  container
+  direction="row"
+  justifyContent="space-evenly"
+  alignItems="flex-end"
+>
         <Grid item 
                 xs={10}
                 sm={10}
@@ -100,6 +106,7 @@ export default function Automation() {
                 >
           <TextField
           fullwidth
+          margin="dense"
           sx={{ width: "100%" }}
           id="scrollbar-line1"
           label="Scrollbar Line 1"
@@ -112,10 +119,14 @@ export default function Automation() {
                 md={2}
                 lg={2}
                 xl={2}
-                >
+                />
             </Grid>
-            </Grid>
-            <Grid container spacing={2}>
+            <Grid
+  container
+  direction="row"
+  justifyContent="space-evenly"
+  alignItems="flex-end"
+>
         <Grid item 
                 xs={10}
                 sm={10}
@@ -125,6 +136,7 @@ export default function Automation() {
                 >
         <TextField
           fullwidth
+          margin="dense"
           sx={{ width: "100%" }}
           id="scrollbar-line2"
           label="Scrollbar Line 2"
@@ -141,9 +153,11 @@ export default function Automation() {
              <Button 
                 variant="contained" 
                 endIcon={<SendIcon />}
+                size="large"
                 onClick={() => {
                     sendScrollbar(2)
                 }}
+                sx={{ margin: "10px", justifycontent: "right" }}
                 >
                     Send
                 </Button>
