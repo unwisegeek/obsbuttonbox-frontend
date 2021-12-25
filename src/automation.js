@@ -33,8 +33,7 @@ getAPI(`${api}/api/getscrollbar`)
 function sendScrollbar() {
     let msg1 = info.getItem(`scrollbar-line1`)
     let msg2 = info.getItem(`scrollbar-line2`)
-    getAPI(`${api}/api/setscrollbar?line=1&msg=${msg1}`)
-    getAPI(`${api}/api/setscrollbar?line=2&msg=${msg2}`)
+    getAPI(`${api}/api/setscrollbar?sb1=${msg1}&sb2=${msg2}`)
 }
 
 export default function Automation() {
@@ -135,7 +134,7 @@ export default function Automation() {
                             endIcon={<SendIcon />}
                             size="large"
                             onClick={() => {
-                                sendScrollbar(2)
+                                sendScrollbar()
                             }}
                             sx={{ margin: "10px", justifycontent: "right" }}
                         >
