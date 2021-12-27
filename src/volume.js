@@ -1,14 +1,10 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import Slider from '@mui/material/Slider'
-import Link from '@mui/material/Link'
-import { info, getAPI } from './storage.js'
+import { getAPI } from './storage.js'
 
 const config = require('./config.js');
-var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 var rows = []
 

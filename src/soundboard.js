@@ -1,13 +1,9 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
-import { info, getAPI, Linkbutton, sendAPIReq } from './storage.js'
+import { info, Linkbutton, sendAPIReq } from './storage.js'
 
 const config = require('./config.js');
-var referrer = window.location.href;
 var api = `http://${config["api_host"]}:${config["api_port"]}`;
 
 var rows = []
