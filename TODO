@@ -13,6 +13,8 @@
 [X] - BUG - Mic/Aux volume is higher than -10, but volume slider stops at -10
 [X] - FEATURE - Add lines to set scrollbar MQTT topics
 [X] - BUG - Sound and Trigger buttons do not load until after refresh
+[ ] - FEATURE - Add button to call soundboard_refresh from the API
+[ ] - BUG - Remove space between sound file name and -#
 
-[ ] - Dynamically generate buttons based on GetScenesList(?) endpoint from OBS WS
+[ ] - FEATURE - Dynamically generate buttons based on GetScenesList(?) endpoint from OBS WS
 [ ] - Disable buttons when API healthcheck fail
